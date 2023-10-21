@@ -5,16 +5,18 @@ import os
 def main():
     
     # Relative home directory (one directory above script)
-    home_dir = os.path.join(os.path.dirname(os.getcwd()))
+    parent_dir = os.path.join(os.path.dirname(os.getcwd()))
+    home_dir = os.path.join(parent_dir, 'GeoBiographyScript')
 
     # source_dir to point to 'Json' folder 
-    source_dir = os.path.join(home_dir, 'processed', 'json')
-
-    # destination_dir to point to 'all csv' folder
-    destination_dir = os.path.join(home_dir, 'processed', 'csv','merged')
-
+    source_dir = os.path.join(home_dir, 'process', 'json')
+    destination_dir = os.path.join(home_dir, 'process', 'csv','merged')
     output_file = os.path.join(destination_dir, 'merged.csv')
 
+
+    #--------------------------------------------------------#
+    #     Todo: Change year according to Google takeout      #
+    #--------------------------------------------------------#
     year_list = range(2014, 2024)
     month_list = range(1, 13)
     file_count = 0

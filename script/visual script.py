@@ -29,12 +29,13 @@ def extract_city(address):
 
 def main():
    
-    # Relative home directory (one directory above script)
-    home_dir = os.path.join(os.path.dirname(os.getcwd()))
+     # Relative home directory (one directory above script)
+    parent_dir = os.path.join(os.path.dirname(os.getcwd()))
+    home_dir = os.path.join(parent_dir, 'GeoBiographyScript')
 
     # Specifying source and destination directory.
-    source_dir = os.path.join(home_dir, 'processed', 'csv','cleaned')
-    destination_dir = os.path.join(home_dir, 'processed', 'csv','visual')
+    source_dir = os.path.join(home_dir, 'process', 'csv','cleaned')
+    destination_dir = os.path.join(home_dir, 'process', 'csv','visual')
 
     # Specifying input and output file.
     input_file = os.path.join(source_dir, 'cleaned.csv')

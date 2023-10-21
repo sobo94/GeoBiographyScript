@@ -18,16 +18,16 @@ month_list = {
 }
 
 def create_processed_directory(source_dir):
-    processed_dir = os.path.join(source_dir, 'processed')
-    json_dir      = os.path.join(processed_dir, 'json')
-    csv_dir       = os.path.join(processed_dir, 'csv')
+    process_dir = os.path.join(source_dir, 'process')
+    json_dir      = os.path.join(process_dir, 'json')
+    csv_dir       = os.path.join(process_dir, 'csv')
     
     clean_csv_dir  = os.path.join(csv_dir, 'cleaned')
     merged_csv_dir = os.path.join(csv_dir, 'merged')
     visual_csv_dir = os.path.join(csv_dir, 'visual')
 
-    # Create the 'processed' directory and its subdirectories
-    os.makedirs(processed_dir, exist_ok=True)
+    # Create the 'process' directory and its subdirectories
+    os.makedirs(process_dir, exist_ok=True)
     os.makedirs(json_dir, exist_ok=True)
     os.makedirs(csv_dir, exist_ok=True)
     os.makedirs(clean_csv_dir, exist_ok=True)
@@ -41,21 +41,26 @@ def create_processed_directory(source_dir):
 def main():
     
     # Relative source directory (one directory above)
-    source_dir = os.path.join(os.path.dirname(os.getcwd()))
-    
+    parent_dir = os.path.join(os.path.dirname(os.getcwd()))
+
+    home_dir = os.path.join(parent_dir, 'GeoBiographyScript')
+    data_dir = os.path.join(home_dir, 'data')
+
     # Create the 'processed' directory structure
-    create_processed_directory(source_dir)
+    create_processed_directory(home_dir)
 
     # Update destination_dir to point to the 'Json' folder inside the 'processed' directory
-    destination_dir = os.path.join(source_dir, 'processed', 'json')
+    destination_dir = os.path.join(home_dir, 'process', 'json')
 
-
+    #--------------------------------------------------------#
+    #     Todo: Change year according to Google takeout      #
+    #--------------------------------------------------------#
     year_list = range(2014, 2024)
     file_count = 0
 
     try:
         for year in year_list:
-            year_folder = os.path.join(source_dir, str(year))
+            year_folder = os.path.join(data_dir, str(year))
 
             # Check if the year folder exists
             if os.path.exists(year_folder):
